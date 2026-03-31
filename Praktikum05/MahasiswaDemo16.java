@@ -1,32 +1,46 @@
+import java.util.Scanner;
+
 public class MahasiswaDemo16 {
     public static void main(String[] args) {
-        MahasiswaBerprestasi16 list = new MahasiswaBerprestasi16();
+        Scanner sc = new Scanner(System.in);
 
-        Mahasiswa16 m1 = new Mahasiswa16("123", "Zidan", "2A", 3.2);
-        Mahasiswa16 m2 = new Mahasiswa16("124", "Ayu", "2A", 3.5);
-        Mahasiswa16 m3 = new Mahasiswa16("125", "Sofi", "2A", 3.1);
-        Mahasiswa16 m4 = new Mahasiswa16("126", "Sita", "2A", 3.9);
-        Mahasiswa16 m5 = new Mahasiswa16("127", "Miki", "2A", 3.7);
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int jumlah = sc.nextInt();
+        sc.nextLine();
 
-        list.tambah(m1);
-        list.tambah(m2);
-        list.tambah(m3);
-        list.tambah(m4);
-        list.tambah(m5);
+        MahasiswaBerprestasi16 list = new MahasiswaBerprestasi16(jumlah);
 
-        System.out.println("Data mahasiswa sebelum sorting: ");
+        for (int i = 1; i <= jumlah; i++) {
+            System.out.println("\nData mahasiswa ke-" + i + ":");
+            System.out.print("NIM: ");
+            String nim = sc.nextLine();
+            System.out.print("Nama: ");
+            String nama = sc.nextLine();
+            System.out.print("Kelas: ");
+            String kelas = sc.nextLine();
+            System.out.print("IPK: ");
+            double ipk = sc.nextDouble();
+            sc.nextLine();
+
+            Mahasiswa16 m = new Mahasiswa16(nim, nama, kelas, ipk);
+            list.tambah(m);
+        }
+
+        System.out.println("\nData mahasiswa sebelum sorting:");
         list.tampil();
 
-        System.out.println("Data Mahasiswa setelah sorting berdasarkan IPK (DESC): ");
+        System.out.println("Data mahasiswa setelah sorting berdasarkan IPK (DESC):");
         list.bubbleSort();
         list.tampil();
 
-        System.out.println("Data yang sudah terurut menggunakan SELECTION SORT (ASC)");
+        System.out.println("Data mahasiswa setelah selection sort (IPK ASC):");
         list.selectionSort();
         list.tampil();
 
-        System.out.println("Data yang sudah terurut menggunakan INSERTION SORT (ASC)");
+        System.out.println("Data mahasiswa setelah insertion sort (IPK ASC):");
         list.insertionSort();
         list.tampil();
+
+        sc.close();
     }
 }
